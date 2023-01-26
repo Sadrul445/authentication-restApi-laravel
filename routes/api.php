@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 //public 
+
+Route::post('/register',[AuthController::class,'register']);
+
 
 Route::get('/clients',[ClientController::class,'index']);
 Route::get('/clients/{id}',[ClientController::class,'show']);
