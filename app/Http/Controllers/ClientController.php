@@ -38,4 +38,8 @@ class ClientController extends Controller
     {
         return Client::destroy($id);
     }
+
+    public function search(Request $request , $name){
+        return Client::where('name','like','%' . $name .'%')->get();
+    }
 }
