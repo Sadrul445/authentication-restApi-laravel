@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 //public 
 
 Route::post('/register',[AuthController::class,'register']);
+Route::post('/login',[AuthController::class,'login']);
 
 
 Route::get('/clients',[ClientController::class,'index']);
