@@ -10,7 +10,6 @@ class ClientController extends Controller
     {
         return Client::all();
     }
-
     public function store(Request $request)
     {
         //validation
@@ -38,7 +37,6 @@ class ClientController extends Controller
     {
         return Client::destroy($id);
     }
-
     public function search(Request $request , $name){
         return Client::where('name','like','%' . $name .'%')->get();
     }

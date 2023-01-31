@@ -18,20 +18,24 @@ use Illuminate\Support\Facades\Route;
 
 //public 
 
-Route::post('/register',[AuthController::class,'register']);
-Route::post('/login',[AuthController::class,'login']);
+Route::post('/register',[AuthController::class,'register']); //register
+Route::post('/login',[AuthController::class,'login']); //login
 
-
-Route::get('/clients',[ClientController::class,'index']);
-Route::get('/clients/{id}',[ClientController::class,'show']);
-
-Route::post('/clients',[ClientController::class,'store']);
-Route::post('/clients/{id}',[ClientController::class,'update']);
-Route::delete('/clients/delete/{id}',[ClientController::class,'destroy']);
-Route::get('/clients/search/{name}',[ClientController::class,'search']);
+Route::get('/clients',[ClientController::class,'index']);   //full index show
+Route::get('/clients/{id}',[ClientController::class,'show']);   //single show
+Route::get('/clients/search/{name}',[ClientController::class,'search']); //search
 
 //protected
 
+Route::group(['middleware'=>['auth:sanctum']],function(){
+    Route::post('/logout',[AuthController::class,'logout']); //logoout
+
+    Route::post('/clients',[ClientController::class,'store']); //create
+    Route::put('/clients/{id}',[ClientController::class,'update']); //update
+    Route::delete('/clients/delete/{id}',[ClientController::class,'destroy']); //delete
+    
+}
+);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
